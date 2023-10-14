@@ -19,6 +19,7 @@ import frc.robot.Constants.DriveConstants;
 // import frc.robot.Constants.OIConstants;
 // import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -73,6 +74,13 @@ public class DriveSubsystem extends SubsystemBase {
 
     // Set default max speed (use constants) !!!alh
     m_drive.setMaxOutput(0.1);
+
+    // Send data to logging system
+    SmartDashboard.putData("Gyro", m_gyro);
+    SmartDashboard.putData("Diff Drive", m_drive);
+    // SmartDashboard.putData("LeftFrontSparkMax", leftFrontSparkMax.getEncoder());
+    // SmartDashboard.putData("LeftEncoder", m_leftEncoder);
+    // m_leftMotors.get()
   }
 
   /**

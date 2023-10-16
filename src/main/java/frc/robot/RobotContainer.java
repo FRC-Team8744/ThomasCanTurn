@@ -4,13 +4,19 @@
 
 package frc.robot;
 
+import java.util.Map;
+
 // !!!alh import static edu.wpi.first.wpilibj.PS4Controller.Button;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 // !!!alh import edu.wpi.first.wpilibj.PS4Controller;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.DummyCmd;
 import frc.robot.commands.TurnToAngle;
 import frc.robot.commands.TurnToAngleProfiled;
 import frc.robot.subsystems.DriveSubsystem;
@@ -29,6 +35,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+
+  // ShuffleboardLayout layoutPID = Shuffleboard.getTab("PID")
+  // .getLayout("Commands", BuiltInLayouts.kList)
+  // // .withSize(2, 2)
+  // .withProperties(Map.of("Label position", "HIDDEN")); // hide labels for commands
 
   // The driver's controller
 // !!!alh  PS4Controller m_driverController = new PS4Controller(OIConstants.kDriverControllerPort);
@@ -93,6 +104,10 @@ public class RobotContainer {
     // new JoystickButton(m_driverController, Button.kCircle.value) !!!alh
     new JoystickButton(m_driverController, OIConstants.kButtonY)
         .onTrue(new TurnToAngleProfiled(-90, m_robotDrive).withTimeout(5));
+
+    // Add command buttons for PID debug
+    // layoutPID.add(new TurnToAngle(45, m_robotDrive).withTimeout(5));
+    // layoutPID.add(new TurnToAngle(-45, m_robotDrive).withTimeout(5));
   }
 
   /**
@@ -102,6 +117,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // no auto
-    return new InstantCommand();
+    // return new InstantCommand();
+    return new DummyCmd();
   }
 }

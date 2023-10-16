@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.DummyCmd;
+import frc.robot.commands.TurnAngle;
 import frc.robot.commands.TurnToAngle;
 import frc.robot.commands.TurnToAngleProfiled;
 import frc.robot.subsystems.DriveSubsystem;
@@ -74,7 +75,7 @@ public class RobotContainer {
     // new JoystickButton(m_driverController, Button.kR1.value) !!!alh
     new JoystickButton(m_driverController, OIConstants.kButtonRightBumper)
         .onTrue(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.1)))
-        .onFalse(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.2)));
+        .onFalse(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.5)));
 
     // Stabilize robot to drive straight with gyro when left bumper is held
     // new JoystickButton(m_driverController, Button.kL1.value) !!!alh
@@ -105,6 +106,14 @@ public class RobotContainer {
     new JoystickButton(m_driverController, OIConstants.kButtonY)
         .onTrue(new TurnToAngleProfiled(-90, m_robotDrive).withTimeout(5));
 
+    // Turn to degrees when button is pressed, with a 5 second timeout
+    new JoystickButton(m_driverController, OIConstants.kButtonA)
+        .onTrue(new TurnAngle(-30, m_robotDrive).withTimeout(5));
+
+    // Turn to degrees when button is pressed, with a 5 second timeout
+    new JoystickButton(m_driverController, OIConstants.kButtonB)
+        .onTrue(new TurnAngle(30, m_robotDrive).withTimeout(5));
+    
     // Add command buttons for PID debug
     // layoutPID.add(new TurnToAngle(45, m_robotDrive).withTimeout(5));
     // layoutPID.add(new TurnToAngle(-45, m_robotDrive).withTimeout(5));

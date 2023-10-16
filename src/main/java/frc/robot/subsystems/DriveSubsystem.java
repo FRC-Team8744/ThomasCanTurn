@@ -73,7 +73,7 @@ public class DriveSubsystem extends SubsystemBase {
     // m_rightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
 
     // Set default max speed (use constants) !!!alh
-    m_drive.setMaxOutput(0.1);
+    m_drive.setMaxOutput(0.5);
 
     // Send data to logging system
     SmartDashboard.putData("Gyro", m_gyro);
@@ -150,6 +150,7 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public double getHeading() {
     return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    // return m_gyro.getAngle();
   }
 
   /**

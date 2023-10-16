@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 // !!!alh import edu.wpi.first.wpilibj.PS4Controller;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.DummyCmd;
+// import frc.robot.commands.DummyCmd;
 import frc.robot.commands.TurnAngle;
 import frc.robot.commands.TurnToAngle;
 import frc.robot.commands.TurnToAngleProfiled;
@@ -75,7 +75,7 @@ public class RobotContainer {
     // new JoystickButton(m_driverController, Button.kR1.value) !!!alh
     new JoystickButton(m_driverController, OIConstants.kButtonRightBumper)
         .onTrue(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.1)))
-        .onFalse(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.5)));
+        .onFalse(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.2)));
 
     // Stabilize robot to drive straight with gyro when left bumper is held
     // new JoystickButton(m_driverController, Button.kL1.value) !!!alh
@@ -126,7 +126,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // no auto
-    // return new InstantCommand();
-    return new DummyCmd();
+    return new InstantCommand();
+    // return new DummyCmd();
   }
 }
